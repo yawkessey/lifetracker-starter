@@ -4,6 +4,7 @@ import Landing from "./Landing/Landing";
 import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login/Login.jsx";
+import Register from "./Register/Register.jsx";
 function App() {
   return (
     <div className="App">
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>
