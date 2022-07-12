@@ -19,3 +19,6 @@ CREATE TABLE nutrition (
     created_at      TIMESTAMP NOT NULL DEFAULT NOW(), 
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+-- Check datatype of the columns 
+-- \d+ "name of table"
