@@ -47,8 +47,8 @@ export default function Register() {
           <button className="btn">Create Account</button>
         </div>
         <div className="footer">
-          Already have an account? Login
-          <a href="/login">here</a>
+          Already have an account? Login 
+          <a href="/login"> here</a>
         </div>
       </div>
     </div>
