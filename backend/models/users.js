@@ -109,6 +109,19 @@ class User {
 
     return user;
   }
+
+  static async logNutrition(userId, nutrition) {
+    const requiredFields = ["name", "category", "calories"];
+    requiredFields.forEach((field) => {
+      if (!nutrition.hasOwnProperty(field)) {
+        throw new BadRequestError(`Missing ${field} in request body`);
+      }
+    })
+
+    const query = `INSERT INTO nutrition (name, category, calories, image_url, ) VALUES ($1, $2, $3)`;
+    const result = await db.query(query, []);
+    return result.rows[0];
+  }
 }
 
 module.exports = User;

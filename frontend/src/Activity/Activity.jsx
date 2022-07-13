@@ -11,7 +11,7 @@ export default function Activity() {
           <div className="buttons">
             <button className="goldButton">Add Exercise</button>
             <button className="blueButton">Log Sleep</button>
-            <button className="Aqua Button">Record Nutrition</button>
+            <button className="aquaButton">Record Nutrition</button>
           </div>
         </div>
         <div className="stats">
