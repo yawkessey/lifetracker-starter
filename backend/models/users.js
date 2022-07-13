@@ -45,8 +45,8 @@ class User {
       "email",
       "password",
       "username",
-      "firstName",
-      "lastName",
+      "firstname",
+      "lastname",
     ];
 
     //map through the required fields and throw error message for missing field
@@ -77,21 +77,21 @@ class User {
 
     const result = await db.query(
       `
-      INSERT INTO users (email, password, username, first_name, last_name)
+      INSERT INTO users (email, password, username, firstname, lastname)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING id,
       email,
       username,
-      first_name,
-      last_name,
+      firstname,
+      lastname,
       created_at,
       updated_at`,
       [
         lowercasedEmail,
         hashedPw,
         credentials.username,
-        credentials.firstName,
-        credentials.lastName,
+        credentials.firstname,
+        credentials.lastname,
       ]
     );
 
