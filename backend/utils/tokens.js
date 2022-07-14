@@ -21,7 +21,6 @@ const validateToken = (token) => {
 const createUserJwt = (user) => {
   const payload = {
     email: user.email,
-    isAdmin: user.isAdmin || false,
   };
   return generateToken(payload);
 };

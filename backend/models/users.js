@@ -9,10 +9,10 @@ class User {
       id: user.id,
       username: user.username,
       email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      firstname: user.firstname,
+      lastname: user.lastname,
       // password: user.password,
-      // created_at: user.created_at,
+      created_at: user.created_at,
       // updated_at: user.updated_at,
     };
   }
@@ -111,7 +111,7 @@ class User {
   }
 
   static async logNutrition(userId, nutrition) {
-    const requiredFields = ["name", "category", "calories"];
+    const requiredFields = ["name", "category", "calories", "image_url"];
     requiredFields.forEach((field) => {
       if (!nutrition.hasOwnProperty(field)) {
         throw new BadRequestError(`Missing ${field} in request body`);
