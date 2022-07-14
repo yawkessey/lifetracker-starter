@@ -5,12 +5,16 @@ const morgan = require("morgan");
 const authRouter = require("./routes/auth.js");
 const jwt = require("jsonwebtoken");
 const { NotFoundError } = require("./utils/errors.js");
+const security = require("./middleware/security.js");
 
 // middleware
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use("/auth", authRouter);
+//For every request, we will check if a user exist or if a token is exists in the authorization header
+//If it does then attach it to res.locals
+app.use(security.extractUseFromJwt)
 
 const { PORT } = require("./config");
 const { restart } = require("nodemon");
