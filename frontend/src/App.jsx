@@ -9,24 +9,25 @@ import Activity from "./Activity/Activity"
 import Exercise from "./Exercise/Exercise";
 import Nutrition from "./Nutrition/Nutrition";
 import Sleep from ".//Sleep/Sleep";
+import {useState} from "react";
 
-function App() {
+ export default function App() {
+  const [appState, setAppState] = useState({})
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
+        <Navbar user={appState.user}/>
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/activity" element={<Activity />} />
-          <Route path="/exercise" element={<Exercise />} />
-          <Route path="/nutrition" element={<Nutrition />} />
-          <Route path="/sleep" element={<Sleep />} />
+          <Route path="/" element={<Landing setAppState={setAppState}/>} />
+          <Route path="/login" element={<Login setAppState={setAppState}/>} />
+          <Route path="/register" element={<Register setAppState={setAppState}/>} />
+          <Route path="/activity" element={<Activity setAppState={setAppState}/>} />
+          <Route path="/exercise" element={<Exercise setAppState={setAppState}/>} />
+          <Route path="/nutrition" element={<Nutrition setAppState={setAppState}/>} />
+          <Route path="/sleep" element={<Sleep setAppState={setAppState}/>} />
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
 
-export default App;

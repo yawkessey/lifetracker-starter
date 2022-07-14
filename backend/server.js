@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const authRouter = require("./routes/auth.js");
+const jwt = require("jsonwebtoken")
 const { NotFoundError } = require("./utils/errors.js");
 
 // middleware
@@ -30,6 +31,8 @@ app.use((err, req, res, next) => {
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+
 
 app.post("/", (req, res) => {
   console.log(req.body);

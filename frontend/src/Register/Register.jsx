@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 function Copyright(props) {
   return (
@@ -34,15 +36,38 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
+export default function SignUp({ setAppState }) {
+  const navigate = useNavigate();
+  // const [isLoading, setIsLoading] = useState(false)
+  const [errors, setErrors] = useState({})
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    axios.post("http://localhost:3001/auth/register", data);
-    console.log({
+    const newUser = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+      username: data.get("username"),
+      firstname: data.get("firstName"),
+      lastname: data.get("lastName"),
+    };
+    try {
+      const res = await axios.post("http://localhost:3001/auth/register", newUser);
+
+      if (res?.data?.user) {
+        setAppState(res.data)
+        navigate("/activity")
+      } else {
+        setErrors((e) => ({ ...e, newUser: "Something went wrong with registration" }))
+      }
+
+    } catch (err) {
+      console.log(err);
+      const message = err?.response?.data?.error?.message
+      setErrors((e) => ({ ...e, newUser: message ? String(message) : String(err) }))
+    }
+
+    console.log(newUser);
   };
 
   return (
@@ -70,6 +95,27 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="Username"
+                />
+              </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
@@ -78,7 +124,7 @@ export default function SignUp() {
                   fullWidth
                   id="firstName"
                   label="First Name"
-                  autoFocus
+                  
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -91,16 +137,7 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -112,6 +149,17 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
+              {/* <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="passwordConfirm"
+                  label="Confirm Password"
+                  type="password"
+                  id="passwordConfirm"
+                  autoComplete="new-password"
+                />
+              </Grid> */}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
