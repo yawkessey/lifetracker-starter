@@ -10,6 +10,7 @@ import Exercise from "./Exercise/Exercise";
 import Nutrition from "./Nutrition/Nutrition";
 import Sleep from ".//Sleep/Sleep";
 import {useState} from "react";
+import LoginForm from "./LoginForm/LoginForm"
 
  export default function App() {
   const [appState, setAppState] = useState({})
@@ -24,6 +25,7 @@ import {useState} from "react";
           <Route path="/activity" element={<Activity setAppState={setAppState}/>} />
           <Route path="/exercise" element={<Exercise setAppState={setAppState}/>} />
           <Route path="/nutrition" element={<Nutrition setAppState={setAppState}/>} />
+          <Route path="/nutrition/create" element={<LoginForm setAppState={setAppState}/>}/>
           <Route path="/sleep" element={<Sleep setAppState={setAppState}/>} />
         </Routes>
       </BrowserRouter>

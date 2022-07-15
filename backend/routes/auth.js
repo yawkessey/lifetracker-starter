@@ -9,7 +9,7 @@ const security = require("../middleware/security");
 
 router.post(
   "/login",
-  security.requireAuthenticatedUser,
+  
   async (req, res, next) => {
     try {
       //take users email and password and authenticate them
