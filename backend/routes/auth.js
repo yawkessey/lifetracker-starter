@@ -7,7 +7,7 @@ require("dotenv").config();
 const { createUserJwt } = require("../utils/tokens");
 const security = require("../middleware/security");
 
-router.post("/login", async (req, res, next) => {
+router.post("/login", security.requireAuthenticatedUser, async (req, res, next) => {
   try {
     //take users email and password and authenticate them
     const user = await User.login(req.body);
