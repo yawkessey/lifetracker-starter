@@ -52,7 +52,7 @@ export default function SignUp({ setAppState }) {
       lastname: data.get("lastName"),
     };
     try {
-      const res = await axios.post("http://localhost:3001/auth/register", newUser);
+      const res = await axios.post("https://lifetracker-yka.herokuapp.com/register", newUser);
 
       if (res?.data?.user) {
         setAppState(res.data)

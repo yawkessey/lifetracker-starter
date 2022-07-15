@@ -6,17 +6,19 @@ const authRouter = require("./routes/auth.js");
 const nutritionRouter = require("./routes/nutrition.js");
 const jwt = require("jsonwebtoken");
 const { NotFoundError } = require("./utils/errors.js");
-const security = require("./middleware/security.js");
+const security = require("./middleware/security");
 
 // middleware
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
+//For every request, we will check if a user exist or if a token is exists in the authorization header
+//If it does then attach it to res.locals 
+app.use(security.extractUserFromJwt);
 app.use("/auth", authRouter);
 app.use("/nutrition", nutritionRouter);
-//For every request, we will check if a user exist or if a token is exists in the authorization header
-//If it does then attach it to res.locals
-app.use(security.extractUseFromJwt)
+
+
 
 const { PORT } = require("./config");
 const { restart } = require("nodemon");

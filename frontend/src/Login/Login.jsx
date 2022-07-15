@@ -48,7 +48,7 @@ export default function SignIn({ setAppState }) {
       password: data.get("password"),
     };
     try {
-     const res = await axios.post(`http://localhost:3001/auth/login`, user);
+     const res = await axios.post(`https://lifetracker-yka.herokuapp.com/login`, user);
       if (res?.data?.user) {
         setAppState(res.data)
         navigate("/activity")
