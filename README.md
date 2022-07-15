@@ -39,7 +39,9 @@ Implement any of the following features to improve the application:
 ### Walkthrough Video
 
 
-`http://g.recordit.co/pt11Qx4OjE.gif`
+(http://g.recordit.co/pt11Qx4OjE.gif)
+(http://g.recordit.co/5gm1uAZ8Ad.gif)
+(http://g.recordit.co/Scl9w6lHBH.gif)
 
 ### Reflection
 
