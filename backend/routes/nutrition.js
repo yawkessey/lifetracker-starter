@@ -12,6 +12,7 @@ router.post(
   security.requireAuthenticatedUser,
   async (req, res, next) => {
     //   Use model to print nutrition data to the database
+
     try {
       const { email } = res.locals.user;
       const nutrition = await Nutrition.create(req.body, email);
@@ -25,6 +26,14 @@ router.post(
 
 router.get("/:id", async (req, res, next) => {
   console.log("parameter:", req.params.id);
-  res.status(200).json(Nutrition.getNutrition(req.params.id));
+
+  try {
+    const{id} = req.params; 
+    const nutrition = await Nutrition.getNutrition(id);
+    res.status(200).json(Nutrition.getNutrition(nutrition));
+
+  } catch (error) {
+    next(error)
+  }
 });
 module.exports = router;

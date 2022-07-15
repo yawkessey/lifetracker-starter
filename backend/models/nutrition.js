@@ -20,7 +20,6 @@ class Nutrition {
       "category",
       "calories",
       "image_url",
-      "username"
     ];
     requiredFields.forEach((field) => {
       if (!nutrition.hasOwnProperty(field)) {

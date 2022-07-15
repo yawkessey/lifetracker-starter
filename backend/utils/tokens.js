@@ -26,12 +26,13 @@ const createUserJwt = (user) => {
   return generateToken(payload);
 };
 
-// const testToken = () => {
-//   const user = { email: "person@gmail.com" };
-//   const token = generateToken(user);
-//   const validatdeToken = validateToken(token);
-//   console.log("validatedToken", validatdeToken);
-// };
+const testToken = () => {
+  const user = { email: "person@gmail.com" };
+  const token = generateToken(user);
+  const validatdeToken = validateToken(token);
+  console.log("validatedToken", validatdeToken);
+};
+testToken();
 
 module.exports = {
   generateToken,
