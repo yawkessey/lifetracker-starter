@@ -12,7 +12,7 @@ class User {
       firstname: user.firstname,
       lastname: user.lastname,
       // password: user.password,
-      created_at: user.created_at,
+      // created_at: user.created_at,
       // updated_at: user.updated_at,
     };
   }

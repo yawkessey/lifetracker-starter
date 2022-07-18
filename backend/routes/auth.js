@@ -38,11 +38,8 @@ router.get("/me", security.requireAuthenticatedUser, async (req, res, next) => {
   try {
     //take users email and password and authenticate them
     const { email } = res.locals.user;
-    console.log("email", email);
     const user = await User.getUserByEmail(email);
-    console.log("user", user);
     const publicUser = User.makeUser(user);
-    console.log("publicUser:", publicUser);
     // const user = await User.getUserByEmail(req.body.email);
     // const publicUser = User.makeUser(user);
     return res.status(200).json({ user: publicUser });

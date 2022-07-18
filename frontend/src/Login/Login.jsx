@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -36,9 +36,9 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn({ setAppState }) {
+export default function SignIn({ setAppState, setIsLoggedIn, setIsClicked }) {
   const navigate = useNavigate();
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -49,18 +49,25 @@ export default function SignIn({ setAppState }) {
     };
     // https://lifetracker-yka.herokuapp.com/login
     try {
-     const res = await axios.post(`http://localhost:3001/auth/login`, user);
+      const res = await axios.post(`http://localhost:3001/auth/login`, user);
       if (res?.data?.user) {
-        setAppState(res.data)
-        navigate("/activity")
+        setIsLoggedIn(true);
+        setIsClicked(false);
+        setAppState(res.data);
+        navigate("/activity");
       } else {
-        setErrors((e) => ({ ...e, user: "Invalid username/password combination" }))
+        setErrors((e) => ({
+          ...e,
+          user: "Invalid username/password combination",
+        }));
       }
-
     } catch (err) {
-      console.log(err)
-      const message = err?.response?.data?.error?.message
-      setErrors((e) => ({ ...e, user: message ? String(message) : String(err) }))
+      console.log(err);
+      const message = err?.response?.data?.error?.message;
+      setErrors((e) => ({
+        ...e,
+        user: message ? String(message) : String(err),
+      }));
     }
     console.log(data);
   };
